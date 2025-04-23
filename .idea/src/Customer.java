@@ -17,7 +17,6 @@ class Customer {
     }
 
     public String statement() {
-        int frequentRenterPoints = 0;
         Enumeration enum_rentals = rentals.elements();
         String result = "Rental Record for " + this.getName() + "\n";
         result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
@@ -26,15 +25,12 @@ class Customer {
             Rental each = (Rental) enum_rentals.nextElement();
 
 
-            frequentRenterPoints += each.calculateFrequentRenterPoints();
-
-
             result += "\t" + each.getMovie().getTitle() + "\t" + "\t" + each.getDaysRented() + "\t" + each.getCharge() + "\n";
         }
 
 
         result += "Amount owed is " + getTotalCharge() + "\n";
-        result += "You earned " + frequentRenterPoints + " frequent renter points";
+        result += "You earned " + getTotalFrequentRentalPoints() + " frequent renter points";
         return result;
     }
 
@@ -43,7 +39,15 @@ class Customer {
                 .mapToDouble(rental -> ((Rental) rental).getCharge())
                 .sum();
     }
+
+
+    public int getTotalFrequentRentalPoints() {
+        return rentals.stream()
+                .mapToInt(rental -> ((Rental) rental).calculateFrequentRenterPoints())
+                .sum();
+    }
 }
+
 
 
 

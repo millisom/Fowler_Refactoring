@@ -27,11 +27,8 @@ class Customer {
             Rental each = (Rental) enum_rentals.nextElement();
             double thisAmount = each.getCharge(); // Uses new method
 
-            // Add frequent renter points
-            frequentRenterPoints++;
-            if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1) {
-                frequentRenterPoints++;
-            }
+
+            frequentRenterPoints += each.getFrequentRenterPoints();
 
             result += "\t" + each.getMovie().getTitle() + "\t" + "\t" + each.getDaysRented() + "\t" + thisAmount + "\n";
             totalAmount += thisAmount;

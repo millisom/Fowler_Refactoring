@@ -23,11 +23,8 @@ class Customer {
 
         while (enum_rentals.hasMoreElements()) {
             Rental each = (Rental) enum_rentals.nextElement();
-
-
             result += "\t" + each.getMovie().getTitle() + "\t" + "\t" + each.getDaysRented() + "\t" + each.getCharge() + "\n";
         }
-
 
         result += "Amount owed is " + getTotalCharge() + "\n";
         result += "You earned " + getTotalFrequentRentalPoints() + " frequent renter points";
@@ -40,10 +37,9 @@ class Customer {
                 .sum();
     }
 
-
     public int getTotalFrequentRentalPoints() {
         return rentals.stream()
-                .mapToInt(rental -> ((Rental) rental).calculateFrequentRenterPoints())
+                .mapToInt(rental -> ((Rental) rental).getFrequentRenterPoints())
                 .sum();
     }
 }

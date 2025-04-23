@@ -1,4 +1,4 @@
-import java.util.*;
+imimport java.util.*;
 
 class Customer {
     private String name;
@@ -24,8 +24,9 @@ class Customer {
 
         while (enum_rentals.hasMoreElements()) {
             Rental each = (Rental) enum_rentals.nextElement();
-            // Frequent renter points calculation
-            frequentRenterPoints += each.getFrequentRenterPoints();
+
+            // Use the new method from Rental for frequent renter points calculation
+            frequentRenterPoints += each.calculateFrequentRenterPoints();
 
             // Show details for this rental
             result += "\t" + each.getMovie().getTitle() + "\t" + "\t" + each.getDaysRented() + "\t" + each.getCharge() + "\n";
@@ -47,6 +48,7 @@ class Customer {
         return result;
     }
 }
+
 
 
     

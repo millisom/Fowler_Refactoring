@@ -47,9 +47,3 @@ class Customer {
                 .sum();
     }
 }
-
-
-
-
-
-    
